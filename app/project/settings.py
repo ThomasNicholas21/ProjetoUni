@@ -18,25 +18,20 @@ from dotenv import load_dotenv
 BASE_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = BASE_DIR.parent / 'data' / 'web'
 
-load_dotenv(BASE_DIR.parent / 'env' / '.env', override=True)
+load_dotenv(BASE_DIR.parent / 'env_file' / '.env', override=True)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# Pega variável de ambiente criáda, e caso não encontre ela retorna
-# change-me
 SECRET_KEY = "@BCyVcjW>yJp[J3_j96|!v-ue^[JFbm>*-7PW9{oaaHDQT_~0Y-Eu\H0:U;I(Qkr"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# Busca variáveis de ambiente para retornar um booleano
 DEBUG = True
 
-# busca a variável de ambiente e separa os host por virgulas
 ALLOWED_HOSTS = ["127.0.0.1", "0.0.0.0", "localhost"]
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',

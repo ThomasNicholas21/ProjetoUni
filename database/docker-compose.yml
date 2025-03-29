@@ -3,7 +3,7 @@ services:
     container_name: psql_unievangelica
     image: postgres:17.4-alpine3.21
     env_file:
-      - ../env/.env
+      - ../env_file/.env
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     ports:
