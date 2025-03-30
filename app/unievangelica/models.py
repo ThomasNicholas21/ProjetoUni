@@ -3,10 +3,19 @@ from django.db import models
 # Create your models here.
 
 class Bloco(models.Model):
+    class Meta:
+        verbose_name = "Bloco"
+        verbose_name_plural = "Blocos"
+        
     nome_bloco = models.CharField(max_length=20, blank=False)
 
 
 class Sala(models.Model):
+    class Meta:
+        veborse_name = 'Sala'
+        veborse_name_plural = 'Salas'
+        unique_together = ['nome_sala', 'bloco']
+
     nome_sala = models.CharField(
         max_length=20,
         verbose_name="Nome da Sala",
