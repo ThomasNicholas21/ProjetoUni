@@ -54,8 +54,13 @@ class Sala(models.Model):
         ),
         default='PUBLIC',
     )
+    recursos_sala = models.ForeignKey(
+        RecursoSala, 
+        on_delete=models.CASCADE,
+        null=True
+        )
+
     # curso = models.ForeignKey('Curso', on_delete=models.SET_NULL, null=True)
-    # recursos_sala = models.ForeignKey('RecursosSala', on_delete=models.CASCADE)
 
     def __str__(self):
         return f'{self.nome_sala} ({self.bloco.nome_bloco})'
