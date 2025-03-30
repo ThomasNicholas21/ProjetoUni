@@ -13,11 +13,23 @@ class Bloco(models.Model):
         return self.nome_bloco
 
 
+class RecursoSala(models.Model):
+    class Meta:
+        verbose_name = 'Recurso da Sala'
+        verbose_name_plural = 'Recursos da Sala'
+    
+    nome_recurso = models.CharField(max_length=128)
+
+    def __str__(self):
+        return self.nome_recurso
+
+
+
 class Sala(models.Model):
     class Meta:
-        veborse_name = 'Sala'
-        veborse_name_plural = 'Salas'
-        unique_together = ['nome_sala', 'bloco']
+        verbose_name = 'Sala'
+        verbose_name_plural = 'Salas'
+
 
     nome_sala = models.CharField(
         max_length=20,
