@@ -6,8 +6,11 @@ class Bloco(models.Model):
     class Meta:
         verbose_name = "Bloco"
         verbose_name_plural = "Blocos"
-        
+
     nome_bloco = models.CharField(max_length=20, blank=False)
+
+    def __str__(self):
+        return self.nome_bloco
 
 
 class Sala(models.Model):
@@ -41,3 +44,6 @@ class Sala(models.Model):
     )
     # curso = models.ForeignKey('Curso', on_delete=models.SET_NULL, null=True)
     # recursos_sala = models.ForeignKey('RecursosSala', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.nome_sala} ({self.bloco.nome_bloco})'
