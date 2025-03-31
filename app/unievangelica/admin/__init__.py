@@ -1,1 +1,1 @@
-from admin_locais import *
+from .admin_locais import *
