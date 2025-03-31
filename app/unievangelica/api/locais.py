@@ -1,6 +1,7 @@
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import status
+from django.shortcuts import get_object_or_404
 from ..serializer.locais import SerializerBloco
 from ..models.models_locais import Bloco
 
@@ -19,9 +20,12 @@ def api_get_blocos(request):
 
 
 @api_view(http_method_names=["get"])
-def api_get_bloco_detail(request, id):
+def api_get_bloco_detail(request, id_bloco):
     if request.method == "GET":
-        bloco = Bloco.objects.filter(pk=id).first()
+        bloco = get_object_or_404(
+            Bloco,
+            pk=id_bloco
+        )
         serializer = SerializerBloco(
             instance=bloco, 
             many=False
