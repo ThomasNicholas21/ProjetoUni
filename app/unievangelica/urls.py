@@ -8,7 +8,7 @@ urlpatterns = [
     path('api/post/bloco/', locais.api_post_bloco, name='api_post_bloco'),
     # API recursos endpoints
     path('api/get/recursos_sala/', locais.api_get_recursos_sala, name='api_get_recursos_sala'),
-    path('api/get/bloco/<int:id_bloco>/', locais.api_get_bloco_detail, name='apit_get_bloco_detail'),
+    path('api/get/recurso_sala/<int:id_recurso>/', locais.api_get_recurso_sala_detail, name='apit_get_recurso_sala_detail'),
 
 
 

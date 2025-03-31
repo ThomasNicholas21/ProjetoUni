@@ -61,3 +61,15 @@ def api_get_recursos_sala(request):
     
     return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
+
+@api_view(http_method_names=["get"])
+def api_get_recurso_sala_detail(request, id_recurso):
+    if request.method == "GET":
+        recurso_sala = get_object_or_404(RecursoSala, pk=id_recurso)
+        serializer = SerializerRecursoSala(
+            instance=recurso_sala, 
+            many=False
+            )
+        return Response(serializer.data)
+    
+    return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
