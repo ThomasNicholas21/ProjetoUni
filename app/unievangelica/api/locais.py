@@ -73,3 +73,14 @@ def api_get_recurso_sala_detail(request, id_recurso):
         return Response(serializer.data)
     
     return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
+
+
+@api_view(http_method_names=['post'])
+def api_post_recurso_sala(request):
+    if request.method == "POST":
+        serializer = SerializerRecursoSala(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    
+    return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)

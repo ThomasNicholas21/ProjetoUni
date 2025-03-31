@@ -25,10 +25,10 @@ class SerializerRecursoSala(serializers.ModelSerializer):
             "id", "nome_recurso"
         ]
     
-    def validate_nome_bloco(self, value):
+    def validate_nome_recurso(self, value):
         nome_recurso = value
 
-        if Bloco.objects.filter(nome_bloco=nome_recurso):
+        if RecursoSala.objects.filter(nome_recurso=nome_recurso):
             raise serializers.ValidationError('Um recurso com esse nome já existe.')
 
         return nome_recurso
