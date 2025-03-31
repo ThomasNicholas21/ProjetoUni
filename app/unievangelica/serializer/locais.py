@@ -8,3 +8,12 @@ class SerializerBloco(serializers.ModelSerializer):
         fields = [
             "id", "nome_bloco"
         ]
+    
+    def validate_nome_bloco(self, value):
+        nome_bloco = value
+
+        if Bloco.objects.filter(nome_bloco=nome_bloco):
+            raise serializers.ValidationError('')
+
+        return nome_bloco
+    
