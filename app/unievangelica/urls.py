@@ -12,6 +12,8 @@ urlpatterns = [
     path('api/post/recurso_sala/', locais.api_post_recurso_sala, name='api_post_bloco'),
     # API salas endpoints
     path('api/get/salas/', locais.api_get_salas, name='api_get_salas'),
+    path('api/post/sala/', locais.api_post_sala, name='api_post_sala'),
+
 
 
 
