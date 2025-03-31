@@ -40,14 +40,22 @@ class SerializerSala(serializers.ModelSerializer):
         fields = [
             "id", "nome_sala", "bloco",
             "quantidade_maxima", "status",
-            "recursos_sala",
+            "recursos_sala", 'recursos_sala_objetos',
         ]
     
     recursos_sala = serializers.PrimaryKeyRelatedField(
         queryset=RecursoSala.objects.all(),
         many=True,
     )
+    recursos_sala_objetos = SerializerRecursoSala(
+        source='recursos_sala', many=True, read_only=True
+    )
     
+    def validate_nome_sala(self, value):
+        nome_sala = value
 
-    
+        if Sala.objects.filter(nome_sala=nome_sala):
+            raise serializers.ValidationError('Uma Sala com esse nome já existe.')
+
+        return nome_sala
     
