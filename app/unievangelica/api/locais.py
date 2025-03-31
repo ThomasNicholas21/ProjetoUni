@@ -3,7 +3,7 @@ from rest_framework.decorators import api_view
 from rest_framework import status
 from django.shortcuts import get_object_or_404
 from ..serializer.locais import SerializerBloco, SerializerRecursoSala, SerializerSala
-from ..models.models_locais import Bloco, RecursoSala, Sala
+from ..models.locais import Bloco, RecursoSala, Sala
 
 
 # Bloco
