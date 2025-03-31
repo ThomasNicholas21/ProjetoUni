@@ -2,10 +2,11 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import status
 from django.shortcuts import get_object_or_404
-from ..serializer.locais import SerializerBloco
-from ..models.models_locais import Bloco
+from ..serializer.locais import SerializerBloco, SerializerRecursoSala
+from ..models.models_locais import Bloco, RecursoSala
 
 
+# Bloco
 @api_view(http_method_names=["get"])
 def api_get_blocos(request):
     if request.method == "GET":
@@ -44,3 +45,19 @@ def api_post_bloco(request):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     
     return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
+
+
+
+# Recurso Sala
+@api_view(http_method_names=["get"])
+def api_get_recursos_sala(request):
+    if request.method == "GET":
+        recursos_sala = RecursoSala.objects.all()
+        serializer = SerializerRecursoSala(
+            instance=recursos_sala, 
+            many=True
+            )
+        return Response(serializer.data)
+    
+    return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
+
