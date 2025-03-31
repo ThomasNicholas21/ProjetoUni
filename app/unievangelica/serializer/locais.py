@@ -13,7 +13,7 @@ class SerializerBloco(serializers.ModelSerializer):
         nome_bloco = value
 
         if Bloco.objects.filter(nome_bloco=nome_bloco):
-            raise serializers.ValidationError('')
+            raise serializers.ValidationError('Um bloco com esse nome já existe.')
 
         return nome_bloco
     
