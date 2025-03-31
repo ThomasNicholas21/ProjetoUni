@@ -67,10 +67,8 @@ class Sala(models.Model):
 
         )
     )
-    recursos_sala = models.ForeignKey(
+    recursos_sala = models.ManyToManyField(
         RecursoSala, 
-        on_delete=models.CASCADE,
-        null=True,
         verbose_name="Nome do Recurso"
         )
 
