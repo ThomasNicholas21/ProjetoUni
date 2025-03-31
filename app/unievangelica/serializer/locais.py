@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from ..models.models_locais import Bloco, RecursoSala
+from ..models.models_locais import Bloco, RecursoSala, Sala
 # construção dos serializers
 
 class SerializerBloco(serializers.ModelSerializer):
@@ -32,4 +32,22 @@ class SerializerRecursoSala(serializers.ModelSerializer):
             raise serializers.ValidationError('Um recurso com esse nome já existe.')
 
         return nome_recurso
+    
+
+class SerializerSala(serializers.ModelSerializer):
+    class Meta:
+        model = Sala
+        fields = [
+            "id", "nome_sala", "bloco",
+            "quantidade_maxima", "status",
+            "recursos_sala",
+        ]
+    
+    recursos_sala = serializers.PrimaryKeyRelatedField(
+        queryset=RecursoSala.objects.all(),
+        many=True,
+    )
+    
+
+    
     
