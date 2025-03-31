@@ -1,1 +1,1 @@
-from .models_locais import *
+from .locais import *

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from ..models.models_locais import Bloco, RecursoSala, Sala
+from ..models.locais import Bloco, RecursoSala, Sala
 # construção dos serializers
 
 class SerializerBloco(serializers.ModelSerializer):
