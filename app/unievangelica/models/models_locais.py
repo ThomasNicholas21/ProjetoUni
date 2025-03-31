@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.safestring import mark_safe
 
 # Create your models here.
 
@@ -60,11 +61,17 @@ class Sala(models.Model):
         ('PRIVATE', 'Privada'),
         ),
         default='PUBLIC',
+        help_text=mark_safe(
+            'Privada: Indica que essa sala é restrita para um curso<br>'
+            'Pública: Indica que essa sala é liberada para qualquer curso.'
+
+        )
     )
     recursos_sala = models.ForeignKey(
         RecursoSala, 
         on_delete=models.CASCADE,
-        null=True
+        null=True,
+        verbose_name="Nome do Recurso"
         )
 
     # curso = models.ForeignKey('Curso', on_delete=models.SET_NULL, null=True)
