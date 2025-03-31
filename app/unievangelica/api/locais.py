@@ -33,3 +33,14 @@ def api_get_bloco_detail(request, id_bloco):
         return Response(serializer.data)
     
     return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
+
+
+@api_view(http_method_names=['post'])
+def api_post_bloco(request):
+    if request.method == "POST":
+        serializer = SerializerBloco(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    
+    return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
