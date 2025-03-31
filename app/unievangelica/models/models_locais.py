@@ -7,7 +7,11 @@ class Bloco(models.Model):
         verbose_name = "Bloco"
         verbose_name_plural = "Blocos"
 
-    nome_bloco = models.CharField(max_length=20, blank=False)
+    nome_bloco = models.CharField(
+        max_length=20, 
+        blank=False,
+        verbose_name="Nome do bloco"
+    )
 
     def __str__(self):
         return self.nome_bloco
@@ -18,7 +22,10 @@ class RecursoSala(models.Model):
         verbose_name = 'Recurso da Sala'
         verbose_name_plural = 'Recursos da Sala'
     
-    nome_recurso = models.CharField(max_length=128)
+    nome_recurso = models.CharField(
+        max_length=128,
+        verbose_name="Nome do Recurso"
+        )
 
     def __str__(self):
         return self.nome_recurso
