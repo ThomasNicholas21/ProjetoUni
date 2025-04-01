@@ -16,8 +16,9 @@ urlpatterns = [
     # API salas endpoints
     path('api/get/salas/', locais.api_get_salas, name='api_get_salas'),
     path('api/post/sala/', locais.api_post_sala, name='api_post_sala'),
-
-
+    # API cursos endpoints
+    path('api/get/cursos/', reservas.api_curso, name='api_get_cursos'),
+    path('api/post/curso/', reservas.api_curso, name='api_post_curso'),
 
 
     # API Recurso Sala endpoints

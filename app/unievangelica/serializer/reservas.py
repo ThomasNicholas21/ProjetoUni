@@ -7,7 +7,7 @@ class SerializerUsuario(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = [
-            'username', 'first_name', 'last_name', 'password'
+            'id', 'username', 'first_name', 'last_name', 'password'
         ]
         extra_kwargs = {'password': {'write_only': True}}
     
@@ -25,10 +25,21 @@ class SeralizerCursos(serializers.ModelSerializer):
     class Meta:
         model = Cursos
         fields = [
-            'id', 'nome_curso', 'coordenador'
+            'id', 'nome_curso', 'coordenador', 'coordenador_objetos'
         ]
     
     coordenador = serializers.PrimaryKeyRelatedField(
-        queryset=Cursos.objects.all(),
+        queryset=User.objects.all(),
         many=True,
     )
+    coordenador_objetos = SerializerUsuario(
+        source='coordenador', many=True, read_only=True
+    )
+
+    def validate_nome_curso(self, value):
+        nome_curso = value
+
+        if Cursos.objects.filter(nome_curso=nome_curso):
+            raise serializers.ValidationError('Uma Sala com esse nome já existe.')
+
+        return nome_curso
