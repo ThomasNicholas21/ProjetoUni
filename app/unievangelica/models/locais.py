@@ -1,7 +1,6 @@
 from django.db import models
 from django.utils.safestring import mark_safe
 from django.core.exceptions import ValidationError
-from .reservas import Cursos
 # Create your models here.
 
 class Bloco(models.Model):
@@ -74,7 +73,7 @@ class Sala(models.Model):
         )
 
     curso = models.ForeignKey(
-        Cursos, 
+        'Cursos', 
         on_delete=models.PROTECT, 
         null=True,
         blank=True,
