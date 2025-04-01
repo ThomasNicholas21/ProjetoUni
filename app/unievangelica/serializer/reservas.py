@@ -7,9 +7,18 @@ class SerializerUsuario(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = [
-            'username', 'email', 'password'
+            'username', 'first_name', 'last_name', 'password'
         ]
         extra_kwargs = {'password': {'write_only': True}}
+    
+    def validate(self, attrs):
+        required_fields = ['username', 'first_name', 'last_name', 'password']
+        
+        for field in required_fields:
+            if not attrs.get(field):
+                raise serializers.ValidationError(f'O campo {field} é obrigatório.')
+        
+        return super().validate(attrs)
 
 
 class SeralizerCursos(serializers.ModelSerializer):
