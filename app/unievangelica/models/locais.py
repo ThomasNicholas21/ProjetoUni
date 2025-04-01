@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.safestring import mark_safe
-
+from django.core.exceptions import ValidationError
+from .reservas import Cursos
 # Create your models here.
 
 class Bloco(models.Model):
@@ -72,7 +73,27 @@ class Sala(models.Model):
         verbose_name="Nome do Recurso"
         )
 
-    # curso = models.ForeignKey('Curso', on_delete=models.SET_NULL, null=True)
+    curso = models.ForeignKey(
+        Cursos, 
+        on_delete=models.PROTECT, 
+        null=True,
+        blank=True,
+        verbose_name='Curso associado:',
+        help_text='Opcional, caso a sala seja pública.'
+        )
+    
+    def clean(self):
+        if self.status == 'PRIVATE' and not self.curso:
+            raise ValidationError(
+                'Para uma sala ser privada, é necessário colocar a qual curso ela pertence.'
+                )
+        
+        if self.quantidade_maxima < 1:
+            raise ValidationError(
+                'Quantidade de pessoas devem ser pelo menos 1.'
+            )
+        
+
 
     def __str__(self):
         return f'{self.nome_sala} ({self.bloco.nome_bloco})'
