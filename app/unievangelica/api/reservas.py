@@ -3,8 +3,8 @@ from rest_framework.decorators import api_view
 from rest_framework import status
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
-from ..models.reservas import Cursos
-from ..serializer.reservas import SerializerUsuario, SeralizerCursos
+from ..models.reservas import Cursos, Reservas
+from ..serializer.reservas import SerializerUsuario, SeralizerCursos, SerializerReservas
 
 
 # Register User
@@ -45,3 +45,25 @@ def api_curso(request):
         return Response(status=status.HTTP_201_CREATED)
     
     return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
+
+
+# Reservas
+@api_view(http_method_names=["get"]) # Especifica que esta view aceita apenas GET
+def api_reserva(request):
+    if request.method == 'GET':
+        reservas = Reservas.objects.all()
+        serializer = SerializerReservas(
+            instance=reservas, 
+            many=True)
+        return Response(serializer.data)
+    
+    return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
+
+
+@api_view(['POST'])
+def criar_reserva(request):
+    serializer = SerializerReservas(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
