@@ -25,14 +25,6 @@ class Reservas(models.Model):
         verbose_name_plural = 'Reservas'
         ordering = ['data_inicio']
     
-    # Tipos de recorrência
-    RECORRENCIA_CHOICES = [
-        ('NENHUMA', 'Nenhuma recorrência'),
-        ('DIARIA', 'Diária'),
-        ('SEMANAL', 'Semanal'),
-        ('MENSAL', 'Mensal'),
-    ]
-    
     bloco = models.ForeignKey('Bloco', on_delete=models.PROTECT)
     sala = models.ForeignKey('Sala', on_delete=models.PROTECT)
     data_inicio = models.DateTimeField()
@@ -55,12 +47,6 @@ class Reservas(models.Model):
         null=True,
         blank=True,
         verbose_name='Data final da recorrência'
-    )
-    dias_recorrencia = models.CharField(
-        max_length=20,
-        blank=True,
-        null=True,
-        help_text='Para recorrência semanal, informe os dias (ex: 2,4 para terça e quinta)'
     )
 
     def __str__(self):
