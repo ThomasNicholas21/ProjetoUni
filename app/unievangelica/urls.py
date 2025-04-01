@@ -1,7 +1,10 @@
 from django.urls import path
-from .api import locais
+from .api import locais, reservas
 
 urlpatterns = [
+    # API user endpoints
+    path('api/get/usuarios/', reservas.api_user, name='api_get_usuarios'),
+    path('api/post/usuario/', reservas.api_user, name='api_post_usuario'),
     # API bloco endpoints
     path('api/get/blocos/', locais.api_get_blocos, name='api_get_blocos'),
     path('api/get/bloco/<int:id_bloco>/', locais.api_get_bloco_detail, name='apit_get_bloco_detail'),
