@@ -76,14 +76,17 @@ python manage.py test
 
 ## 📝 Logs
 
-Os logs personalizados estão armazenados na pasta logs/, onde são geradas informações de execução do sistema.
+Os logs personalizados estão armazenados na pasta logs/, onde são geradas informações de execução do sistema. Para simular utilize o seguinte comando:
+```bash
+cd app/
+python manage.py simular_notificacoes
+```
 
 ## 📂 Documentação
 A documentação da API estará disponível no repositório em breve.
 
 - **Endpoints da API**: [Em breve]
-- **Requisitos Funcionais**: [Em breve]
-- **Requisitos do Sistema**: [Em breve]
+- **Requisitos Funcionais e o que foi implementado**: 👉 [DOCS](https://github.com/ThomasNicholas21/ProjetoUni/blob/master/docs/requisitos.md)
 
 
 ## 🚀 Conventional Commits
