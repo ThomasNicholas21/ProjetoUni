@@ -2,7 +2,8 @@ from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
 from django.contrib.auth.models import User
-from .models import Bloco, RecursoSala, Sala, Cursos
+from ..models import Bloco, RecursoSala, Sala, Cursos
+
 
 class LocaisAPITestCase(APITestCase):
     def setUp(self):
@@ -34,7 +35,6 @@ class LocaisAPITestCase(APITestCase):
         )
         self.sala_privada.recursos_sala.add(self.recurso2)
 
-    # Testes para Blocos
     def test_get_blocos(self):
         url = reverse('api_get_blocos')
         response = self.client.get(url)
@@ -51,7 +51,6 @@ class LocaisAPITestCase(APITestCase):
         self.assertEqual(Bloco.objects.count(), 3)
         self.assertEqual(Bloco.objects.last().nome_bloco, 'Bloco C')
 
-    # Testes para Recursos de Sala
     def test_get_recursos_sala(self):
         url = reverse('api_get_recursos_sala')
         response = self.client.get(url)
@@ -68,7 +67,6 @@ class LocaisAPITestCase(APITestCase):
         self.assertEqual(RecursoSala.objects.count(), 3)
         self.assertEqual(RecursoSala.objects.last().nome_recurso, 'Quadro branco')
 
-    # Testes para Salas
     def test_get_salas(self):
         url = reverse('api_get_salas')
         response = self.client.get(url)
