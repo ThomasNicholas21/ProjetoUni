@@ -16,7 +16,7 @@ class Command(BaseCommand):
 
         if reservas.exists():
             for reserva in reservas:
-                mensagem = f"Reserva para {reserva.sala.nome_sala} no dia {reserva.data_reserva} das {reserva.horario_inicio} às {reserva.horario_final}."
+                mensagem = f"Reserva para {reserva.sala.nome_sala} no dia {reserva.data_reserva} das {reserva.horario_inicio} as {reserva.horario_final}."
                 logger.info(mensagem)
                 print(mensagem)  # Apenas para testes (mensagens estão disponíveis na pasta log)
         else:
