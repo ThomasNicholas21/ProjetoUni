@@ -92,7 +92,7 @@ def api_reserva_disponivel(request):
         serializer.is_valid(raise_exception=True)
         return Response(
             {
-                'disponibilidade': 'Essa data e horário disponíveis.',
+                'disponibilidade': 'Essa data e horário estão disponíveis.',
                 'sala': serializer.data.get('sala', 'erro') ,
                 'data_reserva': serializer.data.get('data_reserva', 'erro') ,
                 'horario_inicio': serializer.data.get('horario_inicio', 'erro') ,

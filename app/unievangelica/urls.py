@@ -28,7 +28,7 @@ urlpatterns = [
     # API disponibilidade endpoint
     path('api/post/reserva/disponibilidade/', reservas.api_reserva_disponivel, name='api_reserva_disponivel'),
     # API relatorios endpoint
-    path('api/get/relatorio/', reservas.api_get_relatorios, name='api_reserva_disponivel'),
+    path('api/get/relatorio/', reservas.api_get_relatorios, name='api_get_relatorio'),
     # API JWT
     path('api/user/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/user/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),

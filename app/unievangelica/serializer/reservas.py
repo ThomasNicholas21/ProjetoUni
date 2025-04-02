@@ -168,7 +168,7 @@ class SerializerDisponibilidadeReserva(serializers.Serializer):
 
         if conflito:
             raise serializers.ValidationError(
-                f"Já existe uma reserva neste horário ({horario_inicio}-{horario_final})"
+                "Já existe uma reserva neste horário."
             )
 
         return attrs
