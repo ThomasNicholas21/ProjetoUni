@@ -29,7 +29,7 @@ class Reservas(models.Model):
     sala = models.ForeignKey(
         'Sala', on_delete=models.PROTECT
     )
-    data_reserva = models.DateTimeField()
+    data_reserva = models.DateField()
     horario_inicio = models.TimeField()
     horario_final = models.TimeField()
     coordenador = models.ForeignKey(

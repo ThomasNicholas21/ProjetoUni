@@ -57,9 +57,8 @@ class SerializerReservas(serializers.ModelSerializer):
             'curso', 'recorrencia', "quantidade_recorrencia",
         ]
 
-    data_reserva = serializers.DateTimeField(
-        format="%d-%m-%Y %H:%M",
-        input_formats=["%Y-%m-%dT%H:%M", "%d-%m-%Y %H:%M"]
+    data_reserva = serializers.DateField(
+        format="%d-%m-%Y",
     )
     horario_inicio = serializers.TimeField(format="%H:%M")
     horario_final = serializers.TimeField(format="%H:%M")
@@ -99,7 +98,6 @@ class SerializerReservas(serializers.ModelSerializer):
             reserva_recorrente = Reservas.objects.create(**nova_reserva_data)
             reservas.append(reserva_recorrente)
 
-        # Atualiza a reserva principal com a quantidade de recorrências geradas
         reserva_principal.quantidade_recorrencia = quantidade
         reserva_principal.save(update_fields=["quantidade_recorrencia"])
 
