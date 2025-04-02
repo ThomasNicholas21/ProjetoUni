@@ -51,7 +51,7 @@ def api_curso(request):
 @api_view(http_method_names=["get", "post"])
 def api_reserva(request):
     if request.method == 'GET':
-        reservas = Reservas.objects.all()
+        reservas = Reservas.objects.all().order_by('id')
         serializer = SerializerReservas(
             instance=reservas, 
             many=True)
