@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from ..models.locais import Bloco, RecursoSala, Sala
+from ..models import Bloco, RecursoSala, Sala, Cursos
 # construção dos serializers
 
 class SerializerBloco(serializers.ModelSerializer):
@@ -15,7 +15,7 @@ class SerializerBloco(serializers.ModelSerializer):
         if Bloco.objects.filter(nome_bloco=nome_bloco):
             raise serializers.ValidationError('Um bloco com esse nome já existe.')
 
-        return 
+        return value
 
 
 class SerializerRecursoSala(serializers.ModelSerializer):
@@ -40,7 +40,7 @@ class SerializerSala(serializers.ModelSerializer):
         fields = [
             "id", "nome_sala", "bloco",
             "quantidade_maxima", "status",
-            "recursos_sala", 'recursos_sala_objetos',
+            "recursos_sala", 'recursos_sala_objetos', 'curso'
         ]
     
     recursos_sala = serializers.PrimaryKeyRelatedField(
@@ -58,4 +58,22 @@ class SerializerSala(serializers.ModelSerializer):
             raise serializers.ValidationError('Uma Sala com esse nome já existe.')
 
         return nome_sala
+    
+    def validate(self, attrs):
+        status = attrs.get('status')
+        curso = attrs.get('curso')
+        quantidade_maxima = attrs.get('quantidade_maxima')
+        
+        if status == 'PRIVATE' and not curso:
+            raise serializers.ValidationError(
+                'Uma sala privada deve estar associada a um curso.'
+            )
+        
+        if quantidade_maxima <= 0:
+            raise serializers.ValidationError(
+                'Sala deve ter ao menos 1 de capacidade máxima.'
+            )
+            
+        
+        return super().validate(attrs)
     
