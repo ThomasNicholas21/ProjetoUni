@@ -75,6 +75,44 @@ class ReservasAPITestCase(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         self.assertEqual(Reservas.objects.count(), 0)
 
+    def test_check_disponibilidade(self):
+        url = reverse('api_reserva_disponivel')
+        data = {
+            'sala': self.sala.id,
+            'data_reserva': self.amanha.strftime("%d-%m-%Y"),
+            'horario_inicio': '08:00:00',
+            'horario_final': '10:00:00'
+        }
+        response = self.client.post(url, data, format='json')
+        
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data['sala'], self.sala.id)
+
+    def test_check_disponibilidade_conflito(self):
+        Reservas.objects.create(
+            nome_reserva="Aula Conflitante",
+            bloco=self.bloco,
+            sala=self.sala,
+            data_reserva=self.amanha,
+            horario_inicio=time(9, 0),
+            horario_final=time(11, 0),
+            coordenador=self.user,
+            motivo_reserva="Teste de conflito",
+            curso=self.curso
+        )
+        
+        url = reverse('api_reserva_disponivel')
+        data = {
+            'sala': self.sala.id,
+            'data_reserva': self.amanha.strftime("%Y-%m-%d"),
+            'horario_inicio': '08:00',
+            'horario_final': '10:00'
+        }
+        response = self.client.post(url, data, format='json')
+
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertIn("Já existe uma reserva neste horário.", response.data["non_field_errors"])
+
     def test_post_reserva_sem_dados_obrigatorios(self):
         url = reverse('api_post_reservas')
         data = {
@@ -123,6 +161,6 @@ class ReservasAPITestCase(APITestCase):
         self.assertEqual(Reservas.objects.count(), 5) 
 
     def test_get_relatorio(self):
-        url = reverse('api_reserva_disponivel')
+        url = reverse('api_get_relatorio')
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
