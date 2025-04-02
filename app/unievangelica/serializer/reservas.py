@@ -59,6 +59,11 @@ class SerializerReservas(serializers.ModelSerializer):
 
     data_reserva = serializers.DateField(
         format="%d-%m-%Y",
+        input_formats=[
+            "%Y-%m-%d",
+            "%d-%m-%Y",
+            "%d/%m/%Y",
+        ]
     )
     horario_inicio = serializers.TimeField(format="%H:%M")
     horario_final = serializers.TimeField(format="%H:%M")
@@ -80,7 +85,7 @@ class SerializerReservas(serializers.ModelSerializer):
 
         reservas = [reserva_principal]
         data_atual = validated_data["data_reserva"]
-        nome_base = reserva_principal.nome_reserva  # Nome da reserva principal
+        nome_base = reserva_principal.nome_reserva
 
         intervalo = {
             "D": timedelta(days=1),
