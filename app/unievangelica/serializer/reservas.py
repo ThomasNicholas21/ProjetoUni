@@ -73,6 +73,38 @@ class SerializerReservas(serializers.ModelSerializer):
         default=1
     )
 
+    def validate(self, attrs):
+        data_reserva = attrs['data_reserva']
+        horario_inicio = attrs['horario_inicio']
+        horario_final = attrs['horario_final']
+        sala = attrs['sala']
+        curso = attrs['curso']
+
+        if horario_inicio >= horario_final:
+            raise serializers.ValidationError(
+                'O horário inicial não deve ser maior que o final.'
+            )
+        
+        if sala.status == 'PRIVATE' and curso != sala.curso:
+            raise serializers.ValidationError(
+                'A sala escolhida é privada e só pode ser reservada pelo curso associado.'
+            )
+        
+        conflito = Reservas.objects.filter(
+                        data_reserva=data_reserva,
+                        sala=sala,
+                    ).filter(
+                        horario_inicio__lt=horario_final,
+                        horario_final__gt=horario_inicio,
+                    ).exists()
+
+        if conflito:
+            raise serializers.ValidationError(
+                'Já existem reservas nesse horário, tente outro horário.'
+            )
+        
+        return super().validate(attrs)
+
     
     def create(self, validated_data):
         recorrencia = validated_data.get("recorrencia", "N")
