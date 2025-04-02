@@ -13,7 +13,6 @@ Este é um sistema web desenvolvido com Django para gerenciar a reserva de salas
 ## 🏗 Estrutura do Projeto
 - **`app/`**: Contém o código-fonte do projeto Django
 - **`database/`**: Scripts e arquivos de inicialização do banco de dados
-- **`logs/`**: Pasta para simulação de logs personalizados
 - **`docs/`**: Documentação da API, requisitos funcionais e do sistema
 - **`env_file/.env_example`**: Arquivo modelo para configuração do ambiente
 
@@ -46,14 +45,23 @@ Este é um sistema web desenvolvido com Django para gerenciar a reserva de salas
 ### Com Docker
 1. **Configurar o ambiente**
    - Copie `env_example` para `.env`
+     
+  
+2. **Criar ambiente virtual e instalar dependências**
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # Linux/macOS
+   venv\Scripts\activate  # Windows
+   pip install -r requirements.txt
+   ```
 
-2. **Build e up dos containers**
+3. **Build e up dos containers**
    ```bash
    cd database/
    docker-compose up --build
    ```
 
-3. **Criar migrações e superusuário**
+4. **Criar migrações e superusuário**
    ```bash
    cd app/
    python manage.py makemigrations
@@ -62,7 +70,7 @@ Este é um sistema web desenvolvido com Django para gerenciar a reserva de salas
    python manage.py runserver
    ```
 
-4. **Acessar a aplicação**
+5. **Acessar a aplicação**
    - O servidor estará rodando em `http://localhost:8000`
 
 ---
