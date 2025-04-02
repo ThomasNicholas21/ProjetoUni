@@ -64,3 +64,23 @@ def api_reserva(request):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
+
+
+@api_view(http_method_names=["get", "delete"])
+def api_reserva_detail(request, id_reserva):
+    if request.method == 'GET':
+        reserva = get_object_or_404(
+            Reservas, pk=id_reserva
+        )
+        serializer = SerializerReservas(
+            instance=reserva, 
+            many=False)
+        return Response(serializer.data)
+
+    elif request.method == "DELETE":
+        serializer = SerializerReservas(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+    return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)

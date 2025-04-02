@@ -21,6 +21,7 @@ urlpatterns = [
     path('api/post/curso/', reservas.api_curso, name='api_post_curso'),
     # API reservas endpoints
     path('api/get/reservas/', reservas.api_reserva, name='api_get_reservas'),
+    path('api/get/reserva/<int:id_reserva>', reservas.api_reserva_detail, name='api_get_reserva_detail'),
     path('api/post/reserva/', reservas.api_reserva, name='api_post_reservas'),
 
 
