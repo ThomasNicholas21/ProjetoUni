@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 from datetime import timedelta
 from dateutil.relativedelta import relativedelta
 
-
 class SerializerUsuario(serializers.ModelSerializer):
     class Meta:
         model = User

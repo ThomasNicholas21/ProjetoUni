@@ -3,8 +3,9 @@ from rest_framework.decorators import api_view
 from rest_framework import status
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
-from ..models.reservas import Cursos, Reservas
+from ..models import Cursos, Reservas
 from ..serializer.reservas import SerializerUsuario, SeralizerCursos, SerializerReservas, SerializerDisponibilidadeReserva
+from utils.relatorio import gerar_relatorio
 
 
 # Register User
@@ -100,3 +101,15 @@ def api_reserva_disponivel(request):
             )
     
     return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED) 
+
+
+
+# Relatorios
+@api_view(http_method_names=['GET'])
+def api_get_relatorios(request):
+    if request.method == "GET":
+        relatorio = gerar_relatorio()
+
+        return Response(relatorio, status=status.HTTP_200_OK)
+    
+    return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
