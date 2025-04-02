@@ -143,21 +143,16 @@ class SerializerReservas(serializers.ModelSerializer):
 class SerializerDisponibilidadeReserva(serializers.Serializer):
     sala = serializers.PrimaryKeyRelatedField(queryset=Sala.objects.all())
     data_reserva = serializers.DateField(
-        format="%d-%m-%Y",
-        input_formats=[
-            "%Y-%m-%d",
-            "%d-%m-%Y",
-            "%d/%m/%Y",
-        ]
+        input_formats=["%Y-%m-%d", "%d-%m-%Y", "%d/%m/%Y"]
     )
-    horario_inicio = serializers.TimeField(format="%H:%M")
-    horario_final = serializers.TimeField(format="%H:%M")
+    horario_inicio = serializers.TimeField(input_formats=["%H:%M", "%H:%M:%S"])
+    horario_final = serializers.TimeField(input_formats=["%H:%M", "%H:%M:%S"])
 
     def validate(self, attrs):
-        sala = attrs['sala']
         data_reserva = attrs['data_reserva']
         horario_inicio = attrs['horario_inicio']
         horario_final = attrs['horario_final']
+        sala = attrs['sala']
 
         if horario_inicio >= horario_final:
             raise serializers.ValidationError(
@@ -165,20 +160,16 @@ class SerializerDisponibilidadeReserva(serializers.Serializer):
             )
 
         conflito = Reservas.objects.filter(
-            data_reserva=data_reserva,
             sala=sala,
-        ).filter(
+            data_reserva=data_reserva,
             horario_inicio__lt=horario_final,
-            horario_final__gt=horario_inicio,
+            horario_final__gt=horario_inicio
         ).exists()
 
         if conflito:
             raise serializers.ValidationError(
-                    {
-                        "verificação": (f"{data_reserva}, {horario_inicio} e "
-                                     f"{horario_final} estão indisponíveis.")
-                    }
-                )
+                f"Já existe uma reserva neste horário ({horario_inicio}-{horario_final})"
+            )
 
         return attrs
         
