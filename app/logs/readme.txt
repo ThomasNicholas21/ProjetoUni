@@ -1,0 +1,1 @@
+Pasta log deve existir para simular logs em ambiente de desenvolvimento

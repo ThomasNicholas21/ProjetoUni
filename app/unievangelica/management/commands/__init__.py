@@ -1,0 +1,1 @@
+from .simular_notificacoes import *
