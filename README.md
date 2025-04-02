@@ -12,7 +12,7 @@ Este é um sistema web desenvolvido com Django para gerenciar a reserva de salas
 
 ## 🏗 Estrutura do Projeto
 - **`app/`**: Contém o código-fonte do projeto Django
-- **`database/`**: Scripts e arquivos de inicialização do banco de dados
+- **`database/`**: Arquivo docker-compose para inicialização do banco de dados
 - **`docs/`**: Documentação da API, requisitos funcionais e do sistema
 - **`env_file/.env_example`**: Arquivo modelo para configuração do ambiente
 
