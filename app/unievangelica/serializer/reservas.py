@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from unievangelica.models import Cursos, Reservas
+from unievangelica.models import Cursos, Reservas, Sala
 from django.contrib.auth.models import User
 from datetime import timedelta
 from dateutil.relativedelta import relativedelta
@@ -139,3 +139,47 @@ class SerializerReservas(serializers.ModelSerializer):
         reserva_principal.save(update_fields=["quantidade_recorrencia"])
 
         return reserva_principal
+
+
+class SerializerDisponibilidadeReserva(serializers.Serializer):
+    sala = serializers.PrimaryKeyRelatedField(queryset=Sala.objects.all())
+    data_reserva = serializers.DateField(
+        format="%d-%m-%Y",
+        input_formats=[
+            "%Y-%m-%d",
+            "%d-%m-%Y",
+            "%d/%m/%Y",
+        ]
+    )
+    horario_inicio = serializers.TimeField(format="%H:%M")
+    horario_final = serializers.TimeField(format="%H:%M")
+
+    def validate(self, attrs):
+        sala = attrs['sala']
+        data_reserva = attrs['data_reserva']
+        horario_inicio = attrs['horario_inicio']
+        horario_final = attrs['horario_final']
+
+        if horario_inicio >= horario_final:
+            raise serializers.ValidationError(
+                "O horário inicial deve ser menor que o horário final."
+            )
+
+        conflito = Reservas.objects.filter(
+            data_reserva=data_reserva,
+            sala=sala,
+        ).filter(
+            horario_inicio__lt=horario_final,
+            horario_final__gt=horario_inicio,
+        ).exists()
+
+        if conflito:
+            raise serializers.ValidationError(
+                    {
+                        "verificação": (f"{data_reserva}, {horario_inicio} e "
+                                     f"{horario_final} estão indisponíveis.")
+                    }
+                )
+
+        return attrs
+        

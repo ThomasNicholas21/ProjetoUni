@@ -24,6 +24,8 @@ urlpatterns = [
     path('api/get/reserva/<int:id_reserva>', reservas.api_reserva_detail, name='api_get_reserva_detail'),
     path('api/post/reserva/', reservas.api_reserva, name='api_post_reservas'),
     path('api/delete/reserva/<int:id_reserva>', reservas.api_reserva_detail, name='api_delete_reserva_detail'),
+    # API disponibilidade endpoint
+    path('api/reserva/disponibilidade/', reservas.api_reserva_disponivel, name='api_reserva_disponivel'),
 
 
     # API Recurso Sala endpoints

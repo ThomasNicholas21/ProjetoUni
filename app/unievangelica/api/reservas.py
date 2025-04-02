@@ -4,7 +4,7 @@ from rest_framework import status
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
 from ..models.reservas import Cursos, Reservas
-from ..serializer.reservas import SerializerUsuario, SeralizerCursos, SerializerReservas
+from ..serializer.reservas import SerializerUsuario, SeralizerCursos, SerializerReservas, SerializerDisponibilidadeReserva
 
 
 # Register User
@@ -82,3 +82,21 @@ def api_reserva_detail(request, id_reserva):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
     return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
+
+
+@api_view(http_method_names=['post'])
+def api_reserva_disponivel(request):
+    if request.method == "POST":
+        serializer = SerializerDisponibilidadeReserva(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        return Response(
+            {
+                'disponibilidade': 'Essa data e horário disponíveis.',
+                'sala': serializer.data.get('sala', 'erro') ,
+                'data_reserva': serializer.data.get('data_reserva', 'erro') ,
+                'horario_inicio': serializer.data.get('horario_inicio', 'erro') ,
+                'horario_final': serializer.data.get('horario_final', 'erro') ,
+            }
+            )
+    
+    return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED) 
