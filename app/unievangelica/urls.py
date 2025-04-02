@@ -1,5 +1,6 @@
 from django.urls import path
 from .api import locais, reservas
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView, TokenVerifyView
 
 urlpatterns = [
     # API user endpoints
@@ -28,7 +29,8 @@ urlpatterns = [
     path('api/post/reserva/disponibilidade/', reservas.api_reserva_disponivel, name='api_reserva_disponivel'),
     # API relatorios endpoint
     path('api/get/relatorio/', reservas.api_get_relatorios, name='api_reserva_disponivel'),
-
-    # API Recurso Sala endpoints
-    # API Sala endpoints
+    # API JWT
+    path('api/user/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/user/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/user/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
 ]
