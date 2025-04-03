@@ -1,116 +1,49 @@
-# Documentação de Endpoints
+# 📌 Documentação da API - Sistema de Reservas de Salas
 
-## 1. Cadastro de Blocos e Salas
-
-### Endpoint: Criar um Bloco
-**Método:** POST  
-**Rota:** `/blocos/`  
-**Descrição:** Cria um novo bloco com nome e identificação.  
-**Restrições:**  
-- O nome do bloco deve ser único.
-- Identificação deve seguir um formato padrão predefinido.
+## 🔹 Introdução
+Esta API permite a gestão de reservas de salas dentro da UniEVANGÉLICA, incluindo o cadastro e consulta de usuários, blocos, salas, cursos, recursos e reservas.
 
 ---
 
-### Endpoint: Criar uma Sala
-**Método:** POST  
-**Rota:** `/salas/`  
-**Descrição:** Cria uma sala associada a um bloco, informando capacidade e recursos disponíveis.  
-**Restrições:**  
-- A sala deve estar vinculada a um bloco existente.
-- A capacidade da sala deve ser um número positivo.
+## 🔹 Endpoints Disponíveis
 
-## 2. Gerenciamento de Reservas
+### 👥 Usuários
+- `GET /api/get/usuarios/` → Retorna a lista de usuários cadastrados.
+- `POST /api/post/usuario/` → Cria um novo usuário.
 
-### Endpoint: Criar uma Reserva
-**Método:** POST  
-**Rota:** `/reservas/`  
-**Descrição:** Reserva uma sala, especificando bloco, número da sala, data e horário, nome do coordenador e motivo.  
-**Restrições:**  
-- A sala deve estar disponível no horário especificado.
-- O nome do coordenador deve ser informado.
-- O horário de término deve ser posterior ao horário de início.
+### 🏢 Blocos
+- `GET /api/get/blocos/` → Lista todos os blocos disponíveis.
+- `GET /api/get/bloco/<int:id_bloco>/` → Retorna os detalhes de um bloco específico.
+- `POST /api/post/bloco/` → Cria um novo bloco.
 
----
+### 🛠 Recursos
+- `GET /api/get/recursos_sala/` → Lista os recursos disponíveis para salas.
+- `GET /api/get/recurso_sala/<int:id_recurso>/` → Retorna detalhes de um recurso específico.
+- `POST /api/post/recurso_sala/` → Adiciona um novo recurso para salas.
 
-### Endpoint: Verificar Disponibilidade de uma Sala
-**Método:** GET  
-**Rota:** `/salas/{sala_id}/disponibilidade/`  
-**Descrição:** Retorna a disponibilidade da sala para um período específico.  
-**Restrições:**  
-- Deve ser informada uma data e um intervalo de tempo válido.
+### 🚪 Salas
+- `GET /api/get/salas/` → Lista todas as salas cadastradas.
+- `POST /api/post/sala/` → Cadastra uma nova sala.
 
----
+### 🎓 Cursos
+- `GET /api/get/cursos/` → Lista todos os cursos registrados.
+- `POST /api/post/curso/` → Cadastra um novo curso.
 
-### Endpoint: Cancelar uma Reserva
-**Método:** DELETE  
-**Rota:** `/reservas/{reserva_id}/`  
-**Descrição:** Cancela uma reserva existente.  
-**Restrições:**  
-- Somente o coordenador que fez a reserva pode cancelá-la.
-- Cancelamentos só podem ser feitos antes do horário de início da reserva.
+### 📅 Reservas
+- `GET /api/get/reservas/` → Lista todas as reservas realizadas.
+- `GET /api/get/reserva/<int:id_reserva>/` → Retorna detalhes de uma reserva específica.
+- `POST /api/post/reserva/` → Cria uma nova reserva de sala.
+- `DELETE /api/delete/reserva/<int:id_reserva>/` → Cancela uma reserva existente.
 
-## 3. Regra de Compartilhamento de Espaços
+### ✅ Disponibilidade de Reserva
+- `POST /api/post/reserva/disponibilidade/` → Verifica a disponibilidade de uma sala para reserva.
 
-### Endpoint: Listar Salas Disponíveis para Outros Cursos
-**Método:** GET  
-**Rota:** `/salas/disponiveis/`  
-**Descrição:** Retorna a lista de salas livres que podem ser reservadas por outros cursos.  
-**Restrições:**  
-- Algumas salas podem ser exclusivas para determinados cursos.
-
-## 4. Conflitos de Agendamento
-
-### Endpoint: Criar Reserva Recorrente
-**Método:** POST  
-**Rota:** `/reservas/recorrente/`  
-**Descrição:** Permite a reserva recorrente de uma sala (exemplo: toda segunda-feira das 8h às 10h por um semestre).  
-**Restrições:**  
-- Não deve haver conflitos de horário.
-- Deve ser especificada a recorrência (semanal, mensal etc.).
-
-## 5. Notificações e Relatórios
-
-### Endpoint: Enviar Notificação de Reserva
-**Método:** POST  
-**Rota:** `/notificacoes/`  
-**Descrição:** Simula o envio de notificações sobre reservas futuras.  
-**Restrições:**  
-- Apenas coordenadores podem receber notificações.
+### 📊 Relatórios
+- `GET /api/get/relatorio/` → Retorna relatórios estatísticos sobre as reservas.
 
 ---
 
-### Endpoint: Gerar Relatório de Uso de Salas
-**Método:** GET  
-**Rota:** `/relatorios/uso-salas/`  
-**Descrição:** Gera um relatório com estatísticas de uso das salas, como horários de pico e taxa de ocupação.  
-**Restrições:**  
-- Apenas usuários autorizados podem acessar relatórios.
-
----
-
-# Funcionalidades Bônus
-
-## 1. Autenticação e Segurança
-
-### Endpoint: Autenticação de Coordenadores (JWT)
-**Método:** POST  
-**Rota:** `/auth/login/`  
-**Descrição:** Realiza a autenticação do coordenador e retorna um token JWT.  
-**Restrições:**  
-- O usuário deve estar cadastrado previamente.
-
----
-
-### Endpoint: Registro de Coordenador
-**Método:** POST  
-**Rota:** `/auth/register/`  
-**Descrição:** Registra um novo coordenador no sistema.  
-**Restrições:**  
-- Apenas administradores podem cadastrar novos coordenadores.
-
-## 2. Testes Automatizados
-
-- Testes unitários devem garantir a funcionalidade correta dos endpoints.
-- Testes de integração para validar o fluxo completo do sistema.
-
+## 📌 Observações
+- Os endpoints `POST` exigem envio de dados no corpo da requisição em formato JSON.
+- Os endpoints `DELETE` removem registros do sistema e devem ser usados com cautela.
+- Para consultas específicas, utilize os endpoints com `<int:id_*>` para buscar registros individuais.
