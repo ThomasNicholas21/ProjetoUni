@@ -1,7 +1,7 @@
 # 📚 Sistema de Reserva de Salas - FTT
 
 ## 💡 Descrição do Projeto
-Este sistema web, desenvolvido com Django e Django REST Framework, gerencia a reserva de salas em um ambiente educacional com APIs bem definidas para blocos, salas, recursos, cursos e reservas. Utiliza PostgreSQL em um container Docker para escalabilidade e eficiência. A API segue o padrão RESTful, com serializers para manipulação de dados e documentação acessível via Markdown e Postman. Conta com testes automatizados, logs e autenticação JWT para garantir confiabilidade, segurança, auditoria e prevenção de falhas. 🚀
+Este sistema web, desenvolvido com Django e Django REST Framework, gerencia a reserva de salas em um ambiente educacional com APIs bem definidas para blocos, salas, recursos, cursos e reservas. Utiliza PostgreSQL em um container Docker para escalabilidade e eficiência. A API segue o padrão RESTful, com serializers para manipulação de dados e documentação acessível via Markdown e Postman. Conta com testes automatizados, logs e autenticação JWT para garantir confiabilidade, segurança e prevenção de falhas. 
 
 ## 🎯 Funcionalidades
 - Cadastro de Blocos, Salas, Recursos da Sala, Usuários, e Reservas.
@@ -9,6 +9,7 @@ Este sistema web, desenvolvido com Django e Django REST Framework, gerencia a re
 - Regras de Compartilhamento.
 - Controle de Conflitos.
 - Notificações e Relatórios.
+- Autenticação JWT.
 
 ## 📂 Documentação
 A documentação da API estará disponível no repositório em breve.
