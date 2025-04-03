@@ -44,7 +44,7 @@ git clone https://github.com/ThomasNicholas21/ProjetoUni.git
    - Copie o arquivo `env_example` que esta na pasta `env_file` e renomeie para `.env`
    - Preencha as informações que estão disponíveis no `env_example` para conectar ao banco PostgreSQL e o ative. Lembrando que deve-se alterar somente os valores "change-me".
 
-2. **Criar ambiente virtual e instale as dependências**
+2. **Crie o ambiente virtual e instale as dependências**
    ```bash
    python -m venv venv
    source venv/bin/activate  # Linux/macOS
@@ -52,7 +52,7 @@ git clone https://github.com/ThomasNicholas21/ProjetoUni.git
    pip install -r requirements.txt
    ```
 
-3. **Inicializar o banco de dados e rodar a aplicação**
+3. **Inicialize o banco de dados e rode a aplicação**
    ```bash
    cd app/
    python manage.py makemigrations
@@ -66,7 +66,7 @@ git clone https://github.com/ThomasNicholas21/ProjetoUni.git
    - Copie `env_example` para `.env`
      
   
-2. **Criar ambiente virtual e instalar dependências**
+2. **Crie o ambiente virtual e instale as dependências**
    ```bash
    python -m venv venv
    source venv/bin/activate  # Linux/macOS
@@ -74,7 +74,7 @@ git clone https://github.com/ThomasNicholas21/ProjetoUni.git
    pip install -r requirements.txt
    ```
 
-3. **Build e up dos containers**
+3. **Build e up do container**
    ```bash
    cd database/
    docker-compose up --build
@@ -127,7 +127,7 @@ Segue a tabela com os principais tipos de commits utilizados neste projeto:
 | `feat` | Adição de nova funcionalidade |
 | `fix` | Correção de bug |
 | `docs` | Alteração na documentação |
-| `style` | Implementação e justes de estilização |
+| `style` | Implementação e ajustes de estilização |
 | `refactor` | Refatoração de código sem alteração de funcionalidade |
 | `test` | Adição ou modificação de testes |
 | `chore` | Tarefas de manutenção (build, dependências) |
