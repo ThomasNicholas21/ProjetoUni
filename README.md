@@ -12,7 +12,6 @@ Este sistema web, desenvolvido com Django e Django REST Framework, gerencia a re
 - Autenticação JWT.
 
 ## 📂 Documentação
-A documentação da API estará disponível no repositório em breve.
 
 - **Requisitos Funcionais e o que foi implementado**: 👉 [DOCS - REQUISITOS](https://github.com/ThomasNicholas21/ProjetoUni/blob/master/docs/requisitos.md)
 - **Endpoints da API**: 👉 [DOCS - ENDPOINTS](https://github.com/ThomasNicholas21/ProjetoUni/blob/master/docs/endpoints.md)
