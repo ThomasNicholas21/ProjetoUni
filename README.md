@@ -15,7 +15,7 @@ A documentação da API estará disponível no repositório em breve.
 
 - **Requisitos Funcionais e o que foi implementado**: 👉 [DOCS - REQUISITOS](https://github.com/ThomasNicholas21/ProjetoUni/blob/master/docs/requisitos.md)
 - **Endpoints da API**: 👉 [DOCS - ENDPOINTS](https://github.com/ThomasNicholas21/ProjetoUni/blob/master/docs/endpoints.md)
-- **Download arquivo Json para Postman**: 👉 [POSTMAN](https://github.com/ThomasNicholas21/ProjetoUni/raw/master/docs/Unievangelica%20API.postman_collection.json)
+- **Arquivo Json para Postman**: 👉 [POSTMAN](https://github.com/ThomasNicholas21/ProjetoUni/blob/master/docs/Unievangelica%20API.postman_collection.json)
 
 ### 💻 Tecnologias Utilizadas
 - **Backend:** Django (Python)
