@@ -20,7 +20,7 @@ def api_user(request):
         return Response(serializer.data)
     
     elif request.method == 'POST':
-        serializer = SerializerUsuario(data=request.data)
+        serializer = SerializerUsuario(data=request.data, many=True)
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(status=status.HTTP_201_CREATED)
@@ -40,7 +40,7 @@ def api_curso(request):
         return Response(serializer.data)
     
     elif request.method == 'POST':
-        serializer = SeralizerCursos(data=request.data)
+        serializer = SeralizerCursos(data=request.data, many=True)
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(status=status.HTTP_201_CREATED)
@@ -59,7 +59,7 @@ def api_reserva(request):
         return Response(serializer.data)
 
     elif request.method == "POST":
-        serializer = SerializerReservas(data=request.data)
+        serializer = SerializerReservas(data=request.data, many=True)
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)

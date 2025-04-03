@@ -39,7 +39,7 @@ def api_get_bloco_detail(request, id_bloco):
 @api_view(http_method_names=['post'])
 def api_post_bloco(request):
     if request.method == "POST":
-        serializer = SerializerBloco(data=request.data)
+        serializer = SerializerBloco(data=request.data, many=True)
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -78,7 +78,7 @@ def api_get_recurso_sala_detail(request, id_recurso):
 @api_view(http_method_names=['post'])
 def api_post_recurso_sala(request):
     if request.method == "POST":
-        serializer = SerializerRecursoSala(data=request.data)
+        serializer = SerializerRecursoSala(data=request.data, many=True)
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -103,7 +103,7 @@ def api_get_salas(request):
 @api_view(http_method_names=['post'])
 def api_post_sala(request):
     if request.method == "POST":
-        serializer = SerializerSala(data=request.data)
+        serializer = SerializerSala(data=request.data, many=True)
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
