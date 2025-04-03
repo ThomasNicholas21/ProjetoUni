@@ -17,7 +17,7 @@ A documentação da API estará disponível no repositório em breve.
 - **Endpoints da API**: 👉 [DOCS - ENDPOINTS](https://github.com/ThomasNicholas21/ProjetoUni/blob/master/docs/endpoints.md)
 - **Arquivo Json para Postman**: 👉 [POSTMAN](https://github.com/ThomasNicholas21/ProjetoUni/blob/master/docs/Unievangelica%20API.postman_collection.json)
 
-### 💻 Tecnologias Utilizadas
+## 💻 Tecnologias Utilizadas
 - **Backend:** Django (Python)
 - **Banco de Dados:** PostgreSQL
 - **Docker:** Para ambiente conteinerizado
