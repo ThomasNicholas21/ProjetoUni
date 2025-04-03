@@ -1,0 +1,670 @@
+{
+	"info": {
+		"_postman_id": "182d4699-0e32-4a15-9806-2855a16cbf82",
+		"name": "Unievangelica API",
+		"description": "### **Ordem de Criação dos Recursos na API**\n\nPara garantir o funcionamento correto do sistema de reservas de salas, siga a sequência recomendada para a criação dos recursos:\n\n1. **Criar Blocos**\n    \n2. **Criar Recursos Sala**\n    \n3. **Criar Usuários**\n    \n4. **Criar Cursos**\n    \n5. **Criar Salas**\n    \n6. **Criar Reservas**\n    \n\nSeguir essa ordem evita inconsistências nos dados e garante que todas as informações necessárias estejam disponíveis para o correto funcionamento da API.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42261958"
+	},
+	"item": [
+		{
+			"name": "API endpoints",
+			"item": [
+				{
+					"name": "1º - Locais",
+					"item": [
+						{
+							"name": "Criar",
+							"item": [
+								{
+									"name": "Post Blocos",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "[\r\n    {\r\n        \"nome_bloco\": \"Bloco I\"\r\n    },\r\n    {\r\n        \"nome_bloco\": \"Bloco II\"\r\n    },\r\n    {\r\n        \"nome_bloco\": \"Bloco III\"\r\n    },\r\n    {\r\n        \"nome_bloco\": \"Bloco IV\"\r\n    },\r\n    {\r\n        \"nome_bloco\": \"Bloco V\"\r\n    }\r\n]",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}api/post/bloco/",
+											"host": [
+												"{{base_url}}api"
+											],
+											"path": [
+												"post",
+												"bloco",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Post Recurso Sala",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "[\r\n    {\r\n        \"nome_recurso\": \"Quadro branco\"\r\n    },\r\n    {\r\n        \"nome_recurso\": \"Projetor multimídia\"\r\n    },\r\n    {\r\n        \"nome_recurso\": \"Ar-condicionado\"\r\n    },\r\n    {\r\n        \"nome_recurso\": \"Sistema de som\"\r\n    },\r\n    {\r\n        \"nome_recurso\": \"Computador com internet\"\r\n    }\r\n]",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}api/post/recurso_sala/",
+											"host": [
+												"{{base_url}}api"
+											],
+											"path": [
+												"post",
+												"recurso_sala",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Post Sala",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "[\r\n    {\r\n        \"nome_sala\": \"LAB-101\",\r\n        \"bloco\": 2,\r\n        \"quantidade_maxima\": 20,\r\n        \"status\": \"PRIVATE\",\r\n        \"recursos_sala\": [1, 4], \r\n        \"curso\": 1 \r\n    },\r\n    {\r\n        \"nome_sala\": \"AUD-201\",\r\n        \"bloco\": 1,\r\n        \"quantidade_maxima\": 100,\r\n        \"status\": \"PUBLIC\",\r\n        \"recursos_sala\": [1, 2, 3], \r\n        \"curso\": null \r\n    },\r\n    {\r\n        \"nome_sala\": \"CLIN-01\",\r\n        \"bloco\": 3,\r\n        \"quantidade_maxima\": 10,\r\n        \"status\": \"PRIVATE\",\r\n        \"recursos_sala\": [5], \r\n        \"curso\": 2 \r\n    },\r\n    {\r\n        \"nome_sala\": \"SALA-302\",\r\n        \"bloco\": 1,\r\n        \"quantidade_maxima\": 40,\r\n        \"status\": \"PUBLIC\",\r\n        \"recursos_sala\": [2, 3], \r\n        \"curso\": 3  \r\n    },\r\n    {\r\n        \"nome_sala\": \"LAB-202\",\r\n        \"bloco\": 2,\r\n        \"quantidade_maxima\": 15,\r\n        \"status\": \"PRIVATE\",\r\n        \"recursos_sala\": [1, 4, 5], \r\n        \"curso\": 2 \r\n    }\r\n\r\n]",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}api/post/sala/",
+											"host": [
+												"{{base_url}}api"
+											],
+											"path": [
+												"post",
+												"sala",
+												""
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Visualizar",
+							"item": [
+								{
+									"name": "Get Blocos",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}api/get/blocos/",
+											"host": [
+												"{{base_url}}api"
+											],
+											"path": [
+												"get",
+												"blocos",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get Bloco Detail",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}api/get/bloco/{id}",
+											"host": [
+												"{{base_url}}api"
+											],
+											"path": [
+												"get",
+												"bloco",
+												"{id}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get Recurso Sala",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}api/get/recursos_sala/",
+											"host": [
+												"{{base_url}}api"
+											],
+											"path": [
+												"get",
+												"recursos_sala",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get Recurso Detail",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}api/get/recurso_sala/{id}",
+											"host": [
+												"{{base_url}}api"
+											],
+											"path": [
+												"get",
+												"recurso_sala",
+												"{id}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get Sala",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}api/get/salas/",
+											"host": [
+												"{{base_url}}api"
+											],
+											"path": [
+												"get",
+												"salas",
+												""
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					],
+					"description": "Nesta pasta irá conter os models Blocos, Recurso para Sala e Sala."
+				},
+				{
+					"name": "2º  - Usuários",
+					"item": [
+						{
+							"name": "Criar",
+							"item": [
+								{
+									"name": "Post Usuário",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "[\r\n    {\r\n        \"username\": \"natasha\",\r\n        \"first_name\": \"Natasha Sophie\",\r\n        \"last_name\": \"Silva\",\r\n        \"password\": \"123456\"\r\n    },\r\n    {\r\n        \"username\": \"carlos\",\r\n        \"first_name\": \"Carlos Eduardo\",\r\n        \"last_name\": \"Oliveira\",\r\n        \"password\": \"engcomp2023\"\r\n    },\r\n    {\r\n        \"username\": \"amanda\",\r\n        \"first_name\": \"Amanda Ribeiro\",\r\n        \"last_name\": \"Souza\",\r\n        \"password\": \"medicina@2024\"\r\n    },\r\n    {\r\n        \"username\": \"rafael\",\r\n        \"first_name\": \"Rafael Augusto\",\r\n        \"last_name\": \"Costa\",\r\n        \"password\": \"direito123\"\r\n    },\r\n    {\r\n        \"username\": \"lucia\",\r\n        \"first_name\": \"Lúcia Fernanda\",\r\n        \"last_name\": \"Martins\",\r\n        \"password\": \"arqurb!2024\"\r\n    }\r\n]",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}api/post/usuario/",
+											"host": [
+												"{{base_url}}api"
+											],
+											"path": [
+												"post",
+												"usuario",
+												""
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Visualizar",
+							"item": [
+								{
+									"name": "Get Usuário",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}api/get/usuarios/",
+											"host": [
+												"{{base_url}}api"
+											],
+											"path": [
+												"get",
+												"usuarios",
+												""
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "JWT",
+							"item": [
+								{
+									"name": "Create Token",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"username\": \"thomas\",\r\n    \"password\": \"123456\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}api/user/token/",
+											"host": [
+												"{{base_url}}api"
+											],
+											"path": [
+												"user",
+												"token",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Refresh Token",
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"refresh\": \"coloque token user aqui\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}api/user/token/refresh/",
+											"host": [
+												"{{base_url}}api"
+											],
+											"path": [
+												"user",
+												"token",
+												"refresh",
+												""
+											],
+											"query": [
+												{
+													"key": "refresh",
+													"value": "{{refresh}}",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Verify Token",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"token\": \"coloque o token de access aqui\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}api/user/token/verify/",
+											"host": [
+												"{{base_url}}api"
+											],
+											"path": [
+												"user",
+												"token",
+												"verify",
+												""
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					],
+					"description": "Nesta pasta irá conter o model User, utilizado para autenticação dos coordenadores. Contendo, também, a autenticação JWT para uma segurança mais avançada."
+				},
+				{
+					"name": "3º  - Cursos",
+					"item": [
+						{
+							"name": "Criar",
+							"item": [
+								{
+									"name": "Post Cursos",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "[\r\n    {\r\n        \"nome_curso\": \"Engenharia de Software\",\r\n        \"coordenador\": [1] \r\n    },\r\n    {\r\n        \"nome_curso\": \"Medicina\",\r\n        \"coordenador\": [3] \r\n    },\r\n    {\r\n        \"nome_curso\": \"Arquitetura e Urbanismo\",\r\n        \"coordenador\": [5] \r\n    },\r\n    {\r\n        \"nome_curso\": \"Direito\",\r\n        \"coordenador\": [4] \r\n    },\r\n    {\r\n        \"nome_curso\": \"Administração\",\r\n        \"coordenador\": [2] \r\n    }\r\n]",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}api/post/curso/",
+											"host": [
+												"{{base_url}}api"
+											],
+											"path": [
+												"post",
+												"curso",
+												""
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Visualizar",
+							"item": [
+								{
+									"name": "Get Cursos",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}api/get/cursos/",
+											"host": [
+												"{{base_url}}api"
+											],
+											"path": [
+												"get",
+												"cursos",
+												""
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					],
+					"description": "Nesta pasta irá conter o model Curso, no qual associa o model User para seu funcionamento adequado."
+				},
+				{
+					"name": "4º - Reservas",
+					"item": [
+						{
+							"name": "Reservar",
+							"item": [
+								{
+									"name": "Post Reserva",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "[\r\n    {\r\n        \"nome_reserva\": \"Teste de várias reservas (1/5)\",\r\n        \"bloco\": 1,\r\n        \"sala\": 1,\r\n        \"data_reserva\": \"03-04-2025\",\r\n        \"horario_inicio\": \"20:30\",\r\n        \"horario_final\": \"22:00\",\r\n        \"coordenador\": 3,\r\n        \"motivo_reserva\": \"Reunião de equipe\",\r\n        \"curso\": 1,\r\n        \"recorrencia\": \"N\"\r\n    },\r\n    {\r\n        \"nome_reserva\": \"Teste de várias reservas (2/5)\",\r\n        \"bloco\": 1,\r\n        \"sala\": 3,\r\n        \"data_reserva\": \"04-04-2025\",\r\n        \"horario_inicio\": \"20:30\",\r\n        \"horario_final\": \"22:00\",\r\n        \"coordenador\": 3,\r\n        \"motivo_reserva\": \"Reunião de equipe\",\r\n        \"curso\": 2,\r\n        \"recorrencia\": \"D\",\r\n        \"quantidade_recorrencia\": 5\r\n    },\r\n    {\r\n        \"nome_reserva\": \"Teste de várias reservas (3/5)\",\r\n        \"bloco\": 1,\r\n        \"sala\": 2,\r\n        \"data_reserva\": \"05-04-2025\",\r\n        \"horario_inicio\": \"20:30\",\r\n        \"horario_final\": \"22:00\",\r\n        \"coordenador\": 3,\r\n        \"motivo_reserva\": \"Reunião de equipe\",\r\n        \"curso\": 1,\r\n        \"recorrencia\": \"D\",\r\n        \"quantidade_recorrencia\": 5\r\n    },\r\n    {\r\n        \"nome_reserva\": \"Teste de várias reservas (4/5)\",\r\n        \"bloco\": 1,\r\n        \"sala\": 4,\r\n        \"data_reserva\": \"06-04-2025\",\r\n        \"horario_inicio\": \"20:30\",\r\n        \"horario_final\": \"22:00\",\r\n        \"coordenador\": 3,\r\n        \"motivo_reserva\": \"Reunião de equipe\",\r\n        \"curso\": 2,\r\n        \"recorrencia\": \"D\",\r\n        \"quantidade_recorrencia\": 5\r\n    },\r\n    {\r\n        \"nome_reserva\": \"Teste de várias reservas (5/5)\",\r\n        \"bloco\": 1,\r\n        \"sala\": 4,\r\n        \"data_reserva\": \"07-04-2025\",\r\n        \"horario_inicio\": \"20:30\",\r\n        \"horario_final\": \"22:00\",\r\n        \"coordenador\": 3,\r\n        \"motivo_reserva\": \"Reunião de equipe\",\r\n        \"curso\": 5,\r\n        \"recorrencia\": \"D\",\r\n        \"quantidade_recorrencia\": 5\r\n    }\r\n]",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}api/post/reserva/",
+											"host": [
+												"{{base_url}}api"
+											],
+											"path": [
+												"post",
+												"reserva",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get Reservas",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}api/get/reservas/",
+											"host": [
+												"{{base_url}}api"
+											],
+											"path": [
+												"get",
+												"reservas",
+												""
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Visualizar",
+							"item": [
+								{
+									"name": "Get Reserva",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}api/get/reservas/",
+											"host": [
+												"{{base_url}}api"
+											],
+											"path": [
+												"get",
+												"reservas",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get Reserva Detail",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}api/get/reserva/29",
+											"host": [
+												"{{base_url}}api"
+											],
+											"path": [
+												"get",
+												"reserva",
+												"29"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Disponibilidade",
+							"item": [
+								{
+									"name": "Disponibilidade",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"sala\": 2,\r\n    \"data_reserva\": \"03-04-2025\",  // Alternativas válidas: \"04-04-2025\", \"05-04-2025\" | Inválidas: \"03-04-2025\" (se já reservado)\r\n    \"horario_inicio\": \"18:00\",      // Alternativas válidas: \"19:30\", \"14:00\" | Inválidas: \"17:30\" (conflito), \"18:30\" (sobreposição)\r\n    \"horario_final\": \"19:00\"        // Alternativas válidas: \"20:30\", \"15:00\" | Inválidas: \"19:30\" (conflito), \"18:30\" (inverso inválido)\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}api/post/reserva/disponibilidade/",
+											"host": [
+												"{{base_url}}api"
+											],
+											"path": [
+												"post",
+												"reserva",
+												"disponibilidade",
+												""
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Cancelar",
+							"item": [
+								{
+									"name": "Delete Reserva",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}api/delete/reserva/{id}",
+											"host": [
+												"{{base_url}}api"
+											],
+											"path": [
+												"delete",
+												"reserva",
+												"{id}"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					],
+					"description": "Nesta pasta irá conter o model Reserva, no qual se comunica com os models acima. Para seu bom funcionamento, é necessário que tenha criado os outros models."
+				},
+				{
+					"name": "5º  - Relatório",
+					"item": [
+						{
+							"name": "Visualizar",
+							"item": [
+								{
+									"name": "Get Relatório",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}api/get/relatorio/",
+											"host": [
+												"{{base_url}}api"
+											],
+											"path": [
+												"get",
+												"relatorio",
+												""
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					],
+					"description": "Nesta pasta, você irá conseguir pegar um relatório em formato Json."
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url\n",
+			"value": "http://127.0.0.1:8000",
+			"type": "string"
+		},
+		{
+			"value": "",
+			"type": "string",
+			"disabled": true
+		}
+	]
+}
