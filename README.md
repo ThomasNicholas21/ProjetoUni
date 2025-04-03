@@ -1,7 +1,21 @@
 # 📚 Sistema de Reserva de Salas - FTT
 
 ## 💡 Descrição do Projeto
-Este é um sistema web desenvolvido com Django para gerenciar a reserva de salas em um ambiente educacional. O sistema oferece APIs para o cadastro de blocos, salas, recursos das salas, cursos e reservas, garantindo que cada reserva siga regras bem definidas.
+Este sistema web, desenvolvido com Django e Django REST Framework, gerencia a reserva de salas em um ambiente educacional com APIs bem definidas para blocos, salas, recursos, cursos e reservas. Utiliza PostgreSQL em um container Docker para escalabilidade e eficiência. A API segue o padrão RESTful, com serializers para manipulação de dados e documentação acessível via Markdown e Postman. Conta com testes automatizados, logs e autenticação JWT para garantir confiabilidade, segurança, auditoria e prevenção de falhas. 🚀
+
+## 🎯 Funcionalidades
+- Cadastro de Blocos, Salas, Recursos da Sala, Usuários, e Reservas.
+- Gerenciamento de Reservas.
+- Regras de Compartilhamento.
+- Controle de Conflitos.
+- Notificações e Relatórios.
+
+## 📂 Documentação
+A documentação da API estará disponível no repositório em breve.
+
+- **Requisitos Funcionais e o que foi implementado**: 👉 [DOCS - REQUISITOS](https://github.com/ThomasNicholas21/ProjetoUni/blob/master/docs/requisitos.md)
+- **Endpoints da API**: 👉 [DOCS - ENDPOINTS](https://github.com/ThomasNicholas21/ProjetoUni/blob/master/docs/endpoints.md)
+- **Download arquivo Json para Postman**: 👉 [POSTMAN](https://github.com/ThomasNicholas21/ProjetoUni/raw/master/docs/Unievangelica%20API.postman_collection.json)
 
 ### 💻 Tecnologias Utilizadas
 - **Backend:** Django (Python)
@@ -90,12 +104,6 @@ cd app/
 python manage.py simular_notificacoes
 ```
 
-## 📂 Documentação
-A documentação da API estará disponível no repositório em breve.
-
-- **Endpoints da API**: [Em breve]
-- **Requisitos Funcionais e o que foi implementado**: 👉 [DOCS](https://github.com/ThomasNicholas21/ProjetoUni/blob/master/docs/requisitos.md)
-
 
 ## 🚀 Conventional Commits
 Segue a tabela com os principais tipos de commits utilizados neste projeto:
@@ -105,7 +113,7 @@ Segue a tabela com os principais tipos de commits utilizados neste projeto:
 | `feat` | Adição de nova funcionalidade |
 | `fix` | Correção de bug |
 | `docs` | Alteração na documentação |
-| `style` | Ajustes de formatação (espaços, indentação) |
+| `style` | Implementação e justes de estilização |
 | `refactor` | Refatoração de código sem alteração de funcionalidade |
 | `test` | Adição ou modificação de testes |
 | `chore` | Tarefas de manutenção (build, dependências) |
