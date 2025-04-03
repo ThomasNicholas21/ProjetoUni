@@ -63,7 +63,7 @@ git clone https://github.com/ThomasNicholas21/ProjetoUni.git
 
 ### Com Docker
 1. **Configurar o ambiente**
-   - Copie `env_example` para `.env`
+   - Renomeie o arquivo `.env_example` para `.env`, que esta na pasta `env_file`.
      
   
 2. **Crie o ambiente virtual e instale as dependências**
