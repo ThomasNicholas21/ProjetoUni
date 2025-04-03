@@ -34,10 +34,15 @@ A documentação da API estará disponível no repositório em breve.
 
 ## 🙋‍♂️ Como Rodar o Projeto
 
+**Realize o Git Clone:**
+```bash
+git clone https://github.com/ThomasNicholas21/ProjetoUni.git
+```
+
 ### Sem Docker
 1. **Configurar o ambiente**
-   - Copie o arquivo `env_example` e renomeie para `.env`
-   - Preencha as informações necessárias para conectar ao banco PostgreSQL e o ative.
+   - Copie o arquivo `env_example` que esta na pasta `env_file` e renomeie para `.env`
+   - Preencha as informações que estão disponíveis no `env_example` para conectar ao banco PostgreSQL e o ative. Lembrando que deve-se alterar somente os valores "change-me".
 
 2. **Criar ambiente virtual e instalar dependências**
    ```bash
@@ -121,4 +126,4 @@ Segue a tabela com os principais tipos de commits utilizados neste projeto:
 ---
 
 
-### 🚀 Feito por Thomas
+### 🚀 Feito por Thomas Nicholas
