@@ -44,7 +44,7 @@ git clone https://github.com/ThomasNicholas21/ProjetoUni.git
    - Copie o arquivo `env_example` que esta na pasta `env_file` e renomeie para `.env`
    - Preencha as informações que estão disponíveis no `env_example` para conectar ao banco PostgreSQL e o ative. Lembrando que deve-se alterar somente os valores "change-me".
 
-2. **Criar ambiente virtual e instalar dependências**
+2. **Criar ambiente virtual e instale as dependências**
    ```bash
    python -m venv venv
    source venv/bin/activate  # Linux/macOS
@@ -108,6 +108,15 @@ Os logs personalizados estão armazenados na pasta logs/, onde são geradas info
 cd app/
 python manage.py simular_notificacoes
 ```
+
+## 😎 Painel Administrativo
+
+A framework Django, fornece um painél administrativo para verificar dados e edita-los. A ferramenta foi utilizada para visualização dos dados criados pela API, para acesso é necessário criar um super usuário:
+```bash
+cd app/
+python manage.py createsuperuser
+```
+Depois de criado, acesse: `http://localhost:8000/admin/` e utilize o super usuário criado.
 
 
 ## 🚀 Conventional Commits
