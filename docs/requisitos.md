@@ -30,8 +30,15 @@ Este sistema tem como principais objetivos:
 
 ## 📈 Requisitos Funcionais e Funcionalidades Implementadas
 
-### ✅ 1. **Cadastro de Blocos e Salas**  
-- Registro de blocos físicos (ex.: "Bloco A", "Bloco de Laboratórios").  
+### ✅ 1. **Cadastro de Blocos, Salas, Recursos da Sala, Usuários, e Reservas.**  
+- Registro de blocos e suas salas.
+- Registro de usuários (coordenadores) e seus respectivos cursos.
+- Registro de reservas, aonde solicita:
+    - Bloco e número de Sala
+    - Data da reserva, como também horário e início.
+    - Coordenador vinculado a reserva.
+    - Motivo da reserva.
+    - Se ela é recorrente ou não.  
 - Associação de salas aos blocos, contendo:
   - Capacidade máxima de ocupação.
   - Recursos (projetor, computadores, quadros inteligentes).
